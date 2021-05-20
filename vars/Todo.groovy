@@ -1,4 +1,3 @@
-
 def call(Map params = [:]) {
   // Start Default Arguments
   def args = [

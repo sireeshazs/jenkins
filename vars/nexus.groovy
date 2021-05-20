@@ -13,7 +13,7 @@ def make_artifacts(APP_TYPE, COMPONENT) {
   println("abc${get_branch_exec}abc")
   def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
   if(APP_TYPE == "NGINX") {
-    command = "cd static && zip -r ../${FILENAME} *"
+    command = "zip -r ${FILENAME} *"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NODEJS") {
@@ -24,7 +24,7 @@ def make_artifacts(APP_TYPE, COMPONENT) {
     command = "cp target/*.jar ${COMPONENT}.jar && zip -r ${FILENAME} ${COMPONENT}.jar"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
-  } else if(APP_TYPE == "golang") {
+  } else if(APP_TYPE == "GOLANG") {
     command = "zip -r ${FILENAME} login-ci main.go"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com

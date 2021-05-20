@@ -1,3 +1,4 @@
+/* groovylint-disable DuplicateStringLiteral */
 def nexus(COMPONENT) {
   get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
   def get_branch_exec=sh(returnStdout: true, script: get_branch)
@@ -41,7 +42,7 @@ def code_build(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "go build"
+    command = "export GOPATH=/home/ubuntu/go && export GOBIN=$GOPATH/bin && go get &>>$LOG && go build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }

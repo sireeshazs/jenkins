@@ -14,7 +14,7 @@ def make_artifacts(APP_TYPE, COMPONENT) {
   println("abc${get_branch_exec}abc")
   def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
   if(APP_TYPE == "NGINX") {
-    command = "cd static && zip -r ../${FILENAME} *"
+    command = "zip -r ${FILENAME} *"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NODEJS") {
@@ -35,14 +35,14 @@ def make_artifacts(APP_TYPE, COMPONENT) {
 def code_build(APP_TYPE, COMPONENT) {
   if(APP_TYPE == "NODEJS") {
     command = "npm install"
-    def execute_com=sh(returnStdout: true, script: command)
+    def execute_com=sh(returnStdout: true, script: com
     print execute_com
   } else if(APP_TYPE == "JAVA") {
     command = "mvn clean package"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "go build"
+    command = "go run build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }

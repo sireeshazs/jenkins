@@ -41,7 +41,7 @@ def code_build(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "export GOBIN=$GOPATH/bin && go get &>>$LOG && go build"
+    command = "go get && go build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NGINX") {

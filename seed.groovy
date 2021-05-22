@@ -1,6 +1,6 @@
-folder('CI-Pipelines') {
-  displayName('CI Pipelines')
-  description('CI Pipelines')
+folder('CI-pipeline') {
+  displayName('CI Pipeline')
+  description('CI Pipeline')
 }
 
 def component = ["frontend","users","login","todo"];
@@ -8,7 +8,7 @@ def component = ["frontend","users","login","todo"];
 def count=(component.size()-1)
 for (i in 0..count) {
   def j=component[i]
-  pipelineJob("CI-Pipelines/${j}-ci") {
+  pipelineJob("CI-Pipeline/${j}-ci") {
     configure { flowdefinition ->
       flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
         'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {

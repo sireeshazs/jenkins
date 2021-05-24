@@ -50,3 +50,4 @@ def code_build(APP_TYPE, COMPONENT) {
     print execute_com
   
   }
+}

@@ -15,11 +15,12 @@ for (i in 0..count) {
           'userRemoteConfigs' {
             'hudson.plugins.git.UserRemoteConfig' {
               'url'('https://github.com/sireeshazs/'+j+'.git')
+              'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
             }
           }
           'branches' {
             'hudson.plugins.git.BranchSpec' {
-              'name'('*/main')
+              'name'('*/tag/*')
             }
           }
         }

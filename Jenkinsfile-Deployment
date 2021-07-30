@@ -16,7 +16,13 @@ pipeline {
     stages {
 
         stage('Find the Server') {
-             sh 'aws s3 ls'   
+            steps {
+                addShortText background: 'yellow', color: 'black', borderColor: 'yellow', text: "ENV = ${ENV}"
+                addShortText background: 'yellow', color: 'black', borderColor: 'yellow', text: "COMPONENT = ${COMPONENT}"
+                addShortText background: 'yellow', color: 'black', borderColor: 'yellow', text: "VERSION = ${VERSION}"
+                sh '''
+                    aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
+                '''
             }
         }
 
@@ -25,7 +31,7 @@ pipeline {
                 environment name: 'ENV', value: 'dev'
             }
             steps {
-                git branch: 'main', url: 'https://github.com/sireeshazs/ansible.git'
+                git branch: 'main', url: 'https://github.com/sireeshazs/Ansible-task.git'
                 sh '''
                     ansible-playbook -i inv todo.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
                 '''

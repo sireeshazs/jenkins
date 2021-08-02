@@ -21,6 +21,7 @@ pipeline {
                 addShortText background: 'yellow', color: 'black', borderColor: 'yellow', text: "COMPONENT = ${COMPONENT}"
                 addShortText background: 'yellow', color: 'black', borderColor: 'yellow', text: "VERSION = ${VERSION}"
                 sh '''
+                   ls
                     aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
                 '''
             }

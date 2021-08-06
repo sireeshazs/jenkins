@@ -32,7 +32,7 @@ def call(Map params = [:]) {
             env.get_branch_exec=sh(returnStdout: true, script: get_branch)
           }
           sh '''
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 451563709560.dkr.ecr.us-east-1.amazonaws.com
             docker build -t 451563709560.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
             '''
         }

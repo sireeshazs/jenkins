@@ -3,7 +3,7 @@ folder('CI-pipeline') {
   description('CI Pipeline')
 }
 
-def component = ["frontend","users","login","todo","reactjs"];
+def component = ["frontend","users","login","todo","reactjs","asp.net-core"];
 
 def count=(component.size()-1)
 for (i in 0..count) {
